@@ -1,404 +1,317 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-
-const obras = (await getCollection('obras')).sort(
-  (a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf(),
-);
-
-const obrasDestacadas = obras.slice(0, 3);
-
-const progresoPorEstado = {
-  'en ejecución': 65,
-  terminada: 100,
-  planificada: 20,
-} as const;
-
-const estadoStyles = {
-  'en ejecución': 'bg-amber-100 text-amber-950 ring-amber-300',
-  terminada: 'bg-orange-100 text-orange-950 ring-orange-300',
-  planificada: 'bg-stone-100 text-stone-900 ring-stone-300',
-} as const;
-
-const formatDate = (date: Date) =>
-  new Intl.DateTimeFormat('es-PE', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric',
-  }).format(date);
 ---
 
-<Layout title="Visión y Desarrollo para Pontó | Pukapacha">
-  <main class="min-h-screen overflow-hidden bg-stone-50 text-stone-900">
-    <!-- HERO SECTION: Tonos tierra colorada, arcilla y cobrizos -->
-    <section class="relative isolate overflow-hidden bg-gradient-to-br from-[#240c07] via-[#4d190f] to-[#7c2b1a] text-white">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_80%_15%,rgba(249,115,22,0.22),transparent_35%),linear-gradient(135deg,rgba(36,14,8,0.92),transparent_65%)]"></div>
-      <div class="absolute -right-32 top-24 h-96 w-96 rounded-full border border-amber-400/20 bg-amber-500/10 blur-3xl"></div>
-      
-      <div class="relative mx-auto grid min-h-[680px] max-w-7xl items-center gap-12 px-5 pb-36 pt-28 sm:px-8 lg:grid-cols-[1.08fr_0.92fr] lg:px-10">
-        <div class="max-w-3xl">
-          <!-- Texto pequeño requerido: 'Visión y Desarrollo para Pontó' -->
-          <p class="mb-6 flex items-center gap-3 text-xs font-black uppercase tracking-[0.28em] text-amber-300">
-            <span class="h-px w-10 bg-amber-400"></span>Visión y Desarrollo para Pontó
-          </p>
-          <!-- Título principal INTACTO -->
-          <h1 class="text-5xl font-black leading-[0.98] tracking-tight drop-shadow-2xl sm:text-7xl lg:text-8xl">
-            Un distrito con <span class="bg-gradient-to-r from-amber-200 via-orange-300 to-amber-500 bg-clip-text text-transparent">historia</span>, visión y futuro.
+<Layout title="Pontó: Tierra Colorada, Futuro en Construcción | Pukapacha">
+  <main class="min-h-screen bg-[#faf6f2] text-stone-900">
+    <!-- BLOQUE 1: Hero Section (Impacto Visual) -->
+    <section class="relative isolate overflow-hidden bg-gradient-to-br from-[#200a05] via-[#45160c] to-[#782918] px-5 pb-24 pt-24 text-white sm:px-8 sm:pb-32 sm:pt-32 lg:px-10">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_75%_25%,rgba(249,115,22,0.24),transparent_42%),linear-gradient(135deg,rgba(32,10,5,0.96),transparent_65%)]"></div>
+      <div class="absolute -right-24 top-20 h-96 w-96 rounded-full border border-amber-400/20 bg-amber-500/10 blur-3xl"></div>
+
+      <div class="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+        <div>
+          <!-- Etiqueta superior (Badge) exacta -->
+          <span class="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/10 px-4 py-1.5 text-xs font-black uppercase tracking-[0.22em] text-amber-300 backdrop-blur-md">
+            <span class="h-1.5 w-1.5 rounded-full bg-amber-400"></span>
+            Visión y Desarrollo para nuestro Distrito
+          </span>
+
+          <!-- Título Principal exacto -->
+          <h1 class="mt-6 text-4xl font-black leading-[1.02] tracking-tight drop-shadow-2xl sm:text-6xl lg:text-7xl">
+            Pontó: <span class="bg-gradient-to-r from-amber-200 via-orange-300 to-amber-500 bg-clip-text text-transparent">Tierra Colorada</span>, Futuro en Construcción.
           </h1>
-          <p class="mt-7 max-w-2xl text-base leading-8 text-stone-200 sm:text-xl">
-            Plataforma comunitaria de Pontó, la histórica tierra colorada (<span class="font-bold text-amber-300">Pukapacha</span>). Unimos la voz de nuestros caseríos para forjar un desarrollo participativo, transparente y con identidad.
+
+          <!-- Subtítulo exacto -->
+          <p class="mt-6 max-w-2xl text-base leading-8 text-stone-200 sm:text-lg sm:leading-8">
+            Desde las aguas del río Puchca hasta las alturas de Parashapampa, somos un distrito de herencia milenaria. Esta es una plataforma ciudadana dedicada a proponer soluciones técnicas y reales para nuestros 15 anexos.
           </p>
-          <div class="mt-10 flex flex-col gap-3 sm:flex-row">
-            <a href="#propuestas" class="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 px-6 py-4 text-sm font-black text-stone-950 shadow-xl shadow-orange-950/40 transition-all hover:-translate-y-1 hover:brightness-110 focus:outline-2 focus:outline-offset-4 focus:outline-amber-400">
-              Conoce las Propuestas <span aria-hidden="true">&#8595;</span>
+
+          <!-- Botones (Call to Action) exactos -->
+          <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+            <!-- Botón Principal (Relleno terracota): 'Ver Propuestas' (Enlace a /propuestas) -->
+            <a
+              href="/propuestas"
+              class="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 via-orange-600 to-[#b4432a] px-7 py-4 text-sm font-black text-stone-950 shadow-xl shadow-orange-950/40 transition-all duration-300 hover:-translate-y-1 hover:brightness-110 focus:outline-2 focus:outline-offset-4 focus:outline-amber-400"
+            >
+              Ver Propuestas <span aria-hidden="true">&rarr;</span>
             </a>
-            <a href="#identidad" class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-4 text-sm font-black text-white shadow-lg backdrop-blur-md transition-all hover:-translate-y-1 hover:border-amber-300 hover:text-amber-200 focus:outline-2 focus:outline-offset-4 focus:outline-amber-400">
-              Identidad Pukapacha <span aria-hidden="true">&#8594;</span>
+
+            <!-- Botón Secundario (Borde terracota): 'Nuestro Diagnóstico' (Enlace a /diagnostico) -->
+            <a
+              href="/diagnostico"
+              class="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-amber-400/60 bg-white/5 px-7 py-4 text-sm font-black text-white backdrop-blur-md shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-amber-300 hover:bg-white/10 hover:text-amber-200 focus:outline-2 focus:outline-offset-4 focus:outline-amber-400"
+            >
+              Nuestro Diagnóstico <span aria-hidden="true">&#8595;</span>
             </a>
           </div>
         </div>
 
-        <div class="relative mx-auto w-full max-w-md lg:justify-self-end">
-          <div class="absolute -right-5 -top-5 h-32 w-32 rounded-tr-[2rem] border-r-2 border-t-2 border-amber-400/60"></div>
-          <div class="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-amber-400/30 bg-gradient-to-b from-orange-600 via-[#822c1b] to-[#250d07] shadow-2xl shadow-black/50" role="img" aria-label="Paisaje de la tierra colorada de Pontó">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_65%_20%,rgba(255,255,255,0.35),transparent_22%),linear-gradient(155deg,transparent_35%,rgba(58,18,10,0.2)_36%,rgba(28,9,4,0.9)_100%)]"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-7 sm:p-9">
-              <span class="inline-flex rounded-full bg-amber-400/20 px-3 py-1 text-xs font-black uppercase tracking-[0.2em] text-amber-200 backdrop-blur-md">Pukapacha</span>
-              <p class="mt-3 text-2xl font-black leading-tight text-white drop-shadow-lg">Tierra colorada, memoria viva y comunidades unidas.</p>
-              <p class="mt-2 text-xs font-medium text-stone-300">Huari · Áncash · Perú</p>
+        <!-- Portada visual con mural representativo y datos clave -->
+        <div class="relative mx-auto w-full max-w-lg lg:max-w-none">
+          <div class="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-orange-500/25 via-amber-400/20 to-red-500/25 blur-xl"></div>
+          <div class="relative overflow-hidden rounded-3xl border-2 border-amber-400/30 bg-stone-950 shadow-2xl">
+            <div class="relative aspect-[4/3] w-full overflow-hidden">
+              <img
+                src="/images/ponto-arte-identidad.jpg"
+                alt="Paisaje cultural y muralismo en la tierra colorada de Pontó"
+                class="h-full w-full object-cover transition duration-700 hover:scale-105"
+                loading="eager"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/25 to-transparent"></div>
+              
+              <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                <span class="inline-flex rounded-full bg-amber-400/20 px-3 py-1 text-[11px] font-black uppercase tracking-wider text-amber-300 backdrop-blur-md">
+                  Pukapacha · Huari, Áncash
+                </span>
+                <p class="mt-2 text-lg font-black text-white sm:text-xl">
+                  De Puchca a Parashapampa: 15 anexos unidos por el progreso.
+                </p>
+                <div class="mt-3 flex items-center gap-4 text-xs font-semibold text-stone-300">
+                  <span>📍 3,100 m s. n. m.</span>
+                  <span>🌾 118.29 km²</span>
+                  <span>🤝 15 Anexos</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECCIÓN 1: IDENTIDAD -->
-    <section id="identidad" class="relative z-20 -mt-16 px-5 pb-20 sm:px-8 lg:px-10">
+    <!-- BLOQUE 2: Nuestros Pilares de Visión (Grilla de 3 Tarjetas) -->
+    <section class="relative z-20 -mt-10 px-5 pb-20 sm:px-8 sm:pb-28 lg:px-10">
       <div class="mx-auto max-w-7xl">
-        <div class="rounded-3xl border border-stone-200 bg-white p-8 shadow-xl shadow-stone-900/5 sm:p-12">
-          <div class="max-w-3xl">
-            <p class="text-xs font-black uppercase tracking-[0.22em] text-orange-800">Raíces y Territorio</p>
-            <h2 class="mt-2 text-3xl font-black tracking-tight text-stone-950 sm:text-4xl">
-              Identidad Pukapacha: La fuerza de nuestra tierra colorada
-            </h2>
-            <p class="mt-4 text-base leading-7 text-stone-600">
-              Pontó recibe en su tradición quechua el nombre de <strong class="text-stone-900">Pukapacha</strong> debido al característico color rojizo de sus cerros y tierras agrícolas. Este suelo fértil no solo nutre nuestros cultivos, sino también la historia de un pueblo solidario que avanza con dignidad.
-            </p>
-          </div>
-
-          <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            <div class="rounded-2xl border border-orange-100 bg-[#fdf9f7] p-6 transition-all hover:-translate-y-1 hover:border-orange-300 hover:shadow-lg">
-              <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-100 text-orange-800">
-                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 0 1 2 2v1a2 2 0 0 0 2 2 2 2 0 0 1 2 2v2.945M8 3.935V5.5A2.5 2.5 0 0 0 10.5 8h.5a2 2 0 0 1 2 2 2 2 0 1 0 4 0 2 2 0 0 1 2-2h1.064M15 20.488V18a2 2 0 0 1 2-2h3.064M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
-              </div>
-              <h3 class="mt-4 text-lg font-black text-stone-950">Suelos de Altura</h3>
-              <p class="mt-2 text-sm leading-6 text-stone-600">Valles y laderas ricas en arcilla y nutrientes que acogen a familias agricultoras a más de 3,100 m s.n.m.</p>
-            </div>
-
-            <div class="rounded-2xl border border-orange-100 bg-[#fdf9f7] p-6 transition-all hover:-translate-y-1 hover:border-orange-300 hover:shadow-lg">
-              <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-100 text-amber-900">
-                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 0 0-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 0 1 5.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 0 1 9.288 0M15 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM7 10a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"/></svg>
-              </div>
-              <h3 class="mt-4 text-lg font-black text-stone-950">Ayni y Minka</h3>
-              <p class="mt-2 text-sm leading-6 text-stone-600">Trabajo colectivo en faenas comunales donde cada mano cuenta para abrir caminos y limpiar acequias.</p>
-            </div>
-
-            <div class="rounded-2xl border border-orange-100 bg-[#fdf9f7] p-6 transition-all hover:-translate-y-1 hover:border-orange-300 hover:shadow-lg">
-              <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-red-100 text-red-900">
-                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918"/></svg>
-              </div>
-              <h3 class="mt-4 text-lg font-black text-stone-950">Cultura Quechua</h3>
-              <p class="mt-2 text-sm leading-6 text-stone-600">Música de cuerdas, cantos en quechua y festividades que preservan la memoria viva de nuestras generaciones.</p>
-            </div>
-
-            <div class="rounded-2xl border border-orange-100 bg-[#fdf9f7] p-6 transition-all hover:-translate-y-1 hover:border-orange-300 hover:shadow-lg">
-              <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-stone-200 text-stone-800">
-                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
-              </div>
-              <h3 class="mt-4 text-lg font-black text-stone-950">Vocación Agraria</h3>
-              <p class="mt-2 text-sm leading-6 text-stone-600">Papas nativas, cereales andinos y ganadería tradicional cultivados con respeto al equilibrio natural.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECCIÓN 2: PROPUESTAS -->
-    <section id="propuestas" class="bg-white px-5 py-16 sm:px-8 sm:py-24 lg:px-10">
-      <div class="mx-auto max-w-7xl">
-        <div class="mb-12 max-w-3xl">
-          <p class="text-xs font-black uppercase tracking-[0.22em] text-orange-800">Plan Estratégico Comunitario</p>
-          <h2 class="mt-2 text-3xl font-black tracking-tight text-stone-950 sm:text-4xl">
-            Propuestas para la Transformación de Pontó
+        <div class="mb-10 text-center sm:text-left">
+          <span class="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-[#fbf3ee] px-3.5 py-1 text-xs font-black uppercase tracking-wider text-[#8c2d19]">
+            <span class="h-2 w-2 rounded-full bg-orange-600"></span>
+            Ejes Estratégicos
+          </span>
+          <h2 class="mt-3 text-3xl font-black tracking-tight text-stone-950 sm:text-4xl lg:text-5xl">
+            Nuestros Pilares de Visión
           </h2>
-          <p class="mt-4 text-base leading-7 text-stone-600">
-            Ejes de acción prioritarios formulados desde las necesidades reales de los comuneros y productores para construir un distrito con igualdad de oportunidades.
+          <p class="mt-3 max-w-2xl text-base leading-7 text-stone-600">
+            Compromisos centrales para transformar el potencial productivo, social y cultural de nuestro distrito.
           </p>
         </div>
 
-        <div class="grid gap-8 md:grid-cols-2">
-          <!-- Propuesta 1 -->
-          <div class="relative overflow-hidden rounded-2xl border border-stone-200 bg-[#faf6f3] p-8 shadow-sm transition-all hover:border-orange-300 hover:shadow-md">
-            <div class="flex items-center gap-4">
-              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-orange-700 text-lg font-black text-white">01</span>
-              <div>
-                <span class="text-xs font-bold uppercase tracking-wider text-orange-800">Agua y Agricultura</span>
-                <h3 class="text-xl font-black text-stone-950">Siembra de Agua y Riego Tecnificado</h3>
+        <div class="grid gap-7 md:grid-cols-3">
+          <!-- Tarjeta 1: Agua y Agricultura -->
+          <article class="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-stone-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-orange-400/80 hover:shadow-xl hover:shadow-orange-950/5 sm:p-8">
+            <div class="absolute right-0 top-0 h-28 w-28 translate-x-8 -translate-y-8 rounded-full bg-orange-100/40 blur-2xl transition duration-500 group-hover:scale-150"></div>
+            <div>
+              <div class="flex items-center justify-between">
+                <!-- Ícono: Gota de agua o planta -->
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-100 via-amber-100 to-orange-200 text-[#8c2d19] shadow-inner transition duration-300 group-hover:scale-110">
+                  <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a7.5 7.5 0 0 0 7.5-7.5c0-4.14-7.5-11.25-7.5-11.25S4.5 9.36 4.5 13.5A7.5 7.5 0 0 0 12 21Z" />
+                  </svg>
+                </div>
+                <span class="rounded-full border border-orange-200/80 bg-[#fdf5f0] px-3 py-1 text-[11px] font-black uppercase tracking-wider text-[#8c2d19]">
+                  Pilar 01
+                </span>
               </div>
-            </div>
-            <p class="mt-4 text-sm leading-6 text-stone-600">
-              Construcción de reservorios comunales y revestimiento de canales para asegurar agua permanente en épocas de estiaje, triplicando la productividad agrícola de nuestras parcelas.
-            </p>
-            <ul class="mt-4 space-y-2 text-xs font-semibold text-stone-700">
-              <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-orange-700"></span>Cosecha de agua en cabeceras de cuenca.</li>
-              <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-orange-700"></span>Asistencia técnica para cultivos orgánicos.</li>
-            </ul>
-          </div>
 
-          <!-- Propuesta 2 -->
-          <div class="relative overflow-hidden rounded-2xl border border-stone-200 bg-[#faf6f3] p-8 shadow-sm transition-all hover:border-orange-300 hover:shadow-md">
-            <div class="flex items-center gap-4">
-              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-700 text-lg font-black text-white">02</span>
-              <div>
-                <span class="text-xs font-bold uppercase tracking-wider text-amber-800">Vías e Integración</span>
-                <h3 class="text-xl font-black text-stone-950">Conectividad y Mantenimiento de Caminos</h3>
-              </div>
-            </div>
-            <p class="mt-4 text-sm leading-6 text-stone-600">
-              Plan continuo de transitabilidad para caminos de herradura y trochas carrozables que unen a Pontó con San Marcos, Huaytuna y los principales centros de comercio provincial.
-            </p>
-            <ul class="mt-4 space-y-2 text-xs font-semibold text-stone-700">
-              <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-amber-700"></span>Mantenimiento preventivo antes de temporada de lluvias.</li>
-              <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-amber-700"></span>Transporte seguro para escolares y emergencias.</li>
-            </ul>
-          </div>
+              <!-- Título exacto -->
+              <h3 class="mt-6 text-xl font-black text-stone-950 sm:text-2xl">
+                Agua y Agricultura
+              </h3>
 
-          <!-- Propuesta 3 -->
-          <div class="relative overflow-hidden rounded-2xl border border-stone-200 bg-[#faf6f3] p-8 shadow-sm transition-all hover:border-orange-300 hover:shadow-md">
-            <div class="flex items-center gap-4">
-              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-red-800 text-lg font-black text-white">03</span>
-              <div>
-                <span class="text-xs font-bold uppercase tracking-wider text-red-900">Juventud y Formación</span>
-                <h3 class="text-xl font-black text-stone-950">Educación Técnica e Inclusión Digital</h3>
-              </div>
+              <!-- Texto exacto -->
+              <p class="mt-3 text-sm leading-7 text-stone-600 sm:text-base sm:leading-7">
+                Impulsamos la eficiencia hídrica y el riego tecnificado para transformar nuestro minifundio y potenciar desde los frutales de Yunguilla hasta las cosechas de Cuchos.
+              </p>
             </div>
-            <p class="mt-4 text-sm leading-6 text-stone-600">
-              Espacios comunales con conectividad a internet de alta velocidad, talleres técnicos productivos y becas comunitarias para que los jóvenes lideren el progreso de Pontó.
-            </p>
-            <ul class="mt-4 space-y-2 text-xs font-semibold text-stone-700">
-              <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-red-800"></span>Centro digital comunitario de acceso libre.</li>
-              <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-red-800"></span>Formación técnica en agroindustria y gestión local.</li>
-            </ul>
-          </div>
 
-          <!-- Propuesta 4 -->
-          <div class="relative overflow-hidden rounded-2xl border border-stone-200 bg-[#faf6f3] p-8 shadow-sm transition-all hover:border-orange-300 hover:shadow-md">
-            <div class="flex items-center gap-4">
-              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-stone-800 text-lg font-black text-white">04</span>
-              <div>
-                <span class="text-xs font-bold uppercase tracking-wider text-stone-700">Salud y Saneamiento</span>
-                <h3 class="text-xl font-black text-stone-950">Salud Rural y Agua Segura</h3>
-              </div>
+            <div class="mt-6 flex items-center gap-2 border-t border-stone-100 pt-4 text-xs font-black uppercase tracking-wider text-orange-800">
+              <span>Eficiencia hídrica y tecnificación</span>
+              <span aria-hidden="true">&rarr;</span>
             </div>
-            <p class="mt-4 text-sm leading-6 text-stone-600">
-              Mejoramiento de postas de salud con personal médico permanente, botiquines comunales y cloración constante de sistemas de agua para erradicar la anemia infantil.
-            </p>
-            <ul class="mt-4 space-y-2 text-xs font-semibold text-stone-700">
-              <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-stone-800"></span>Campañas médicas descentralizadas en caseríos.</li>
-              <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-stone-800"></span>Vigilancia comunitaria de la calidad del agua potable.</li>
-            </ul>
-          </div>
+          </article>
+
+          <!-- Tarjeta 2: Integración y Conectividad -->
+          <article class="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-stone-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-orange-400/80 hover:shadow-xl hover:shadow-orange-950/5 sm:p-8">
+            <div class="absolute right-0 top-0 h-28 w-28 translate-x-8 -translate-y-8 rounded-full bg-amber-100/40 blur-2xl transition duration-500 group-hover:scale-150"></div>
+            <div>
+              <div class="flex items-center justify-between">
+                <!-- Ícono: Carretera o puente -->
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-100 via-orange-100 to-amber-200 text-[#7c2d12] shadow-inner transition duration-300 group-hover:scale-110">
+                  <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 19 8 5m8 0 4 14M12 5v2m0 5v2m0 5v2" />
+                  </svg>
+                </div>
+                <span class="rounded-full border border-amber-200/80 bg-[#fef8f2] px-3 py-1 text-[11px] font-black uppercase tracking-wider text-[#7c2d12]">
+                  Pilar 02
+                </span>
+              </div>
+
+              <!-- Título exacto -->
+              <h3 class="mt-6 text-xl font-black text-stone-950 sm:text-2xl">
+                Integración y Conectividad
+              </h3>
+
+              <!-- Texto exacto -->
+              <p class="mt-3 text-sm leading-7 text-stone-600 sm:text-base sm:leading-7">
+                Proponemos el cierre de brechas en infraestructura vial y conectividad digital para unir a San Miguel, Conin y todas nuestras comunidades campesinas.
+              </p>
+            </div>
+
+            <div class="mt-6 flex items-center gap-2 border-t border-stone-100 pt-4 text-xs font-black uppercase tracking-wider text-amber-900">
+              <span>Caminos rurales e internet</span>
+              <span aria-hidden="true">&rarr;</span>
+            </div>
+          </article>
+
+          <!-- Tarjeta 3: Identidad y Turismo -->
+          <article class="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-stone-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-orange-400/80 hover:shadow-xl hover:shadow-orange-950/5 sm:p-8">
+            <div class="absolute right-0 top-0 h-28 w-28 translate-x-8 -translate-y-8 rounded-full bg-red-100/40 blur-2xl transition duration-500 group-hover:scale-150"></div>
+            <div>
+              <div class="flex items-center justify-between">
+                <!-- Ícono: Montaña o sol andino -->
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-red-100 via-orange-100 to-red-200 text-[#991b1b] shadow-inner transition duration-300 group-hover:scale-110">
+                  <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m3 20 8-14 3.5 6 2.5-4 4 12H3Z" />
+                    <circle cx="18" cy="6" r="2.5" />
+                  </svg>
+                </div>
+                <span class="rounded-full border border-red-200/80 bg-[#fdf4f4] px-3 py-1 text-[11px] font-black uppercase tracking-wider text-[#991b1b]">
+                  Pilar 03
+                </span>
+              </div>
+
+              <!-- Título exacto -->
+              <h3 class="mt-6 text-xl font-black text-stone-950 sm:text-2xl">
+                Identidad y Turismo
+              </h3>
+
+              <!-- Texto exacto -->
+              <p class="mt-3 text-sm leading-7 text-stone-600 sm:text-base sm:leading-7">
+                Revaloramos el Qhapaq Ñan, nuestros petroglifos y el muralismo de la tierra 'pukapachina' como motores de una nueva economía ecoturística.
+              </p>
+            </div>
+
+            <div class="mt-6 flex items-center gap-2 border-t border-stone-100 pt-4 text-xs font-black uppercase tracking-wider text-red-900">
+              <span>Qhapaq Ñan y arte comunal</span>
+              <span aria-hidden="true">&rarr;</span>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- SECCIÓN 3: DIAGNÓSTICO -->
-    <section id="diagnostico" class="border-y border-stone-200 bg-[#f7f2ee] px-5 py-16 sm:px-8 sm:py-24 lg:px-10">
+    <!-- BLOQUE 3: Explora nuestra plataforma (Grilla de accesos rápidos a otras páginas) -->
+    <section class="border-t border-stone-200/80 bg-white px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
       <div class="mx-auto max-w-7xl">
-        <div class="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-          <div>
-            <p class="text-xs font-black uppercase tracking-[0.22em] text-orange-800">Transparencia y Seguimiento</p>
-            <h2 class="mt-2 text-3xl font-black tracking-tight text-stone-950 sm:text-4xl">
-              Diagnóstico Territorial y Obras Clave
-            </h2>
-            <p class="mt-2 max-w-2xl text-sm leading-6 text-stone-600">
-              Monitoreo del avance de los proyectos de infraestructura y necesidades prioritarias identificadas en las asambleas del distrito.
-            </p>
-          </div>
-          <a href="/obras/" class="inline-flex items-center gap-2 text-sm font-black text-orange-800 transition-colors hover:text-orange-950">
-            Ver todas las obras registradas <span aria-hidden="true">&#8594;</span>
-          </a>
+        <div class="mb-12 text-center sm:text-left">
+          <span class="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-[#fbf3ee] px-3.5 py-1 text-xs font-black uppercase tracking-wider text-[#8c2d19]">
+            <span class="h-2 w-2 rounded-full bg-orange-600"></span>
+            Navegación Rápida
+          </span>
+          <h2 class="mt-3 text-3xl font-black tracking-tight text-stone-950 sm:text-4xl lg:text-5xl">
+            Explora nuestra plataforma
+          </h2>
+          <p class="mt-3 max-w-2xl text-base leading-7 text-stone-600">
+            Conoce a fondo las propuestas técnicas, la memoria histórica de nuestra tierra y súmate a la visión de Pontó.
+          </p>
         </div>
 
-        <!-- Indicadores territoriales -->
-        <div class="mb-10 grid gap-4 sm:grid-cols-3">
-          <div class="rounded-xl border border-stone-200 bg-white p-5 shadow-sm">
-            <p class="text-xs font-bold uppercase tracking-wider text-stone-500">Prioridad Hídrica</p>
-            <p class="mt-2 text-2xl font-black text-orange-800">8 Comunidades</p>
-            <p class="mt-1 text-xs text-stone-500">En evaluación para reservorios y canales.</p>
-          </div>
-          <div class="rounded-xl border border-stone-200 bg-white p-5 shadow-sm">
-            <p class="text-xs font-bold uppercase tracking-wider text-stone-500">Caminos Rurales</p>
-            <p class="mt-2 text-2xl font-black text-amber-800">42 Kilómetros</p>
-            <p class="mt-1 text-xs text-stone-500">De vías que requieren mantenimiento periódico.</p>
-          </div>
-          <div class="rounded-xl border border-stone-200 bg-white p-5 shadow-sm">
-            <p class="text-xs font-bold uppercase tracking-wider text-stone-500">Participación Activa</p>
-            <p class="mt-2 text-2xl font-black text-stone-800">100% Comunal</p>
-            <p class="mt-1 text-xs text-stone-500">Decisiones articuladas con las bases sociales.</p>
-          </div>
-        </div>
-
-        <!-- Listado de Obras con paleta cálida de tierra colorada -->
-        <div class="grid gap-6 md:grid-cols-3">
-          {obrasDestacadas.map((obra) => {
-            const avance = progresoPorEstado[obra.data.estado];
-            return (
-              <article class="group overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-md transition-all hover:-translate-y-2 hover:border-orange-300 hover:shadow-xl">
-                <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-[#3b150c] to-[#742718]">
-                  <img
-                    src={obra.data.imagen}
-                    alt={`Imagen de ${obra.data.titulo}`}
-                    class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  <div class="absolute inset-0 bg-gradient-to-t from-stone-950/60 via-transparent to-transparent"></div>
-                  <span class={`absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-black capitalize shadow-lg ring-1 ${estadoStyles[obra.data.estado]}`}>
-                    {obra.data.estado}
-                  </span>
-                </div>
-                <div class="p-6">
-                  <time datetime={obra.data.fecha.toISOString()} class="text-xs font-bold uppercase tracking-[0.14em] text-stone-400">
-                    {formatDate(obra.data.fecha)}
-                  </time>
-                  <h3 class="mt-3 text-xl font-black leading-tight text-stone-950">{obra.data.titulo}</h3>
-                  <p class="mt-3 line-clamp-2 text-sm leading-6 text-stone-600">{obra.data.descripcion}</p>
-                  <div class="mt-6">
-                    <div class="mb-2 flex items-center justify-between text-xs font-black text-stone-600">
-                      <span>Avance de proyecto</span>
-                      <span class="text-orange-800">{avance}%</span>
-                    </div>
-                    <div class="h-2 overflow-hidden rounded-full bg-stone-200">
-                      <div class="h-full rounded-full bg-gradient-to-r from-orange-600 via-amber-600 to-amber-500" style={`width: ${avance}%`}></div>
-                    </div>
-                  </div>
-                  <a
-                    href="/obras/"
-                    class="mt-6 inline-flex items-center gap-2 rounded-lg border border-orange-800 px-4 py-2.5 text-sm font-black text-orange-900 transition-all hover:bg-orange-800 hover:text-white focus:outline-2 focus:outline-offset-4 focus:outline-orange-700"
-                  >
-                    Ver Ficha Técnica <span aria-hidden="true">&#8599;</span>
-                  </a>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-
-    <!-- SECCIÓN 4: PARTICIPA -->
-    <section id="participa" class="relative overflow-hidden bg-gradient-to-br from-[#240c07] via-[#43150b] to-[#6e2315] px-5 py-20 text-white sm:px-8 sm:py-28 lg:px-10">
-      <div class="absolute -left-20 bottom-0 h-80 w-80 rounded-full border border-amber-400/10 bg-amber-500/5 blur-3xl"></div>
-      <div class="relative mx-auto max-w-7xl">
-        <div class="grid items-center gap-12 lg:grid-cols-2">
-          <div>
-            <p class="text-xs font-black uppercase tracking-[0.24em] text-amber-300">Construyamos Juntos</p>
-            <h2 class="mt-3 text-3xl font-black tracking-tight drop-shadow sm:text-5xl">
-              Participa en la Visión de Pontó
-            </h2>
-            <p class="mt-5 text-base leading-8 text-stone-200 sm:text-lg">
-              La plataforma comunitaria Pukapacha está abierta a cada vecino, comunero, joven y residente de Pontó. Tus aportes enriquecen las propuestas y fortalecen la agenda de desarrollo de nuestro pueblo.
-            </p>
-
-            <div class="mt-8 space-y-4">
-              <div class="flex items-start gap-4 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-400 text-stone-950 font-black">1</span>
-                <div>
-                  <h4 class="font-bold text-amber-200">Asambleas y Diálogo Comunal</h4>
-                  <p class="text-xs leading-5 text-stone-300">Coordinación directa con los delegados y directivas comunales de cada sector.</p>
-                </div>
+        <!-- Grilla tipo Bento / 4 banners interactivos -->
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <!-- Banner 1: Conoce nuestra Identidad -->
+          <a
+            href="/identidad"
+            class="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-stone-200/80 bg-[#fdfaf8] p-7 transition-all duration-300 hover:-translate-y-2 hover:border-orange-400 hover:bg-white hover:shadow-xl hover:shadow-orange-950/10 focus:outline-2 focus:outline-offset-2 focus:outline-orange-400"
+          >
+            <div>
+              <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-orange-100 text-[#8c2d19] transition duration-300 group-hover:scale-110">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 0 1-9-9c0-4.97 4.03-9 9-9 3.5 0 6.54 1.99 8.04 4.91M12 21c4.97 0 9-4.03 9-9 0-1.12-.2-2.19-.58-3.18M12 21V9m0 0a4 4 0 1 0-8 0 4 4 0 0 0 8 0Zm0 0a4 4 0 1 1 8 0 4 4 0 0 1-8 0Z" />
+                </svg>
               </div>
-              <div class="flex items-start gap-4 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-400 text-stone-950 font-black">2</span>
-                <div>
-                  <h4 class="font-bold text-amber-200">Red de Pontoninos Residentes</h4>
-                  <p class="text-xs leading-5 text-stone-300">Canal de articulación para paisanos residentes en Huaraz, Lima y el exterior.</p>
-                </div>
-              </div>
+              <h3 class="mt-5 text-xl font-black text-stone-950 group-hover:text-[#8c2d19] transition-colors">
+                Conoce nuestra Identidad
+              </h3>
+              <p class="mt-2 text-sm leading-6 text-stone-600">
+                La historia de Pontó Viejo, nuestra resiliencia y cultura.
+              </p>
             </div>
-          </div>
+            <div class="mt-6 flex items-center gap-2 text-xs font-black uppercase tracking-wider text-orange-800">
+              <span>Explorar</span>
+              <span class="transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true">&rarr;</span>
+            </div>
+          </a>
 
-          <!-- Formulario de Participación Ciudadana -->
-          <div class="rounded-3xl border border-amber-400/20 bg-stone-900/90 p-8 shadow-2xl backdrop-blur-md">
-            <h3 class="text-xl font-black text-white">Envía tu Propuesta o Iniciativa</h3>
-            <p class="mt-1 text-xs text-stone-400">Sumemos ideas para el agua, los caminos, la educación y el bienestar de Pontó.</p>
-
-            <form class="mt-6 space-y-4" onsubmit="event.preventDefault(); document.getElementById('msg-exito').classList.remove('hidden'); this.reset();">
-              <div>
-                <label for="nombre" class="block text-xs font-bold uppercase tracking-wider text-stone-300">Nombre o Colectivo Comunal</label>
-                <input
-                  type="text"
-                  id="nombre"
-                  required
-                  placeholder="Ej. Familia Ramírez / Asociación de Productores"
-                  class="mt-1.5 w-full rounded-xl border border-stone-700 bg-stone-800/80 px-4 py-3 text-sm text-white placeholder-stone-500 focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
-                />
+          <!-- Banner 2: Lee el Diagnóstico -->
+          <a
+            href="/diagnostico"
+            class="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-stone-200/80 bg-[#fdfaf8] p-7 transition-all duration-300 hover:-translate-y-2 hover:border-amber-400 hover:bg-white hover:shadow-xl hover:shadow-orange-950/10 focus:outline-2 focus:outline-offset-2 focus:outline-amber-400"
+          >
+            <div>
+              <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-100 text-[#7c2d12] transition duration-300 group-hover:scale-110">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+                </svg>
               </div>
+              <h3 class="mt-5 text-xl font-black text-stone-950 group-hover:text-[#7c2d12] transition-colors">
+                Lee el Diagnóstico
+              </h3>
+              <p class="mt-2 text-sm leading-6 text-stone-600">
+                Un análisis real de las necesidades de nuestro territorio.
+              </p>
+            </div>
+            <div class="mt-6 flex items-center gap-2 text-xs font-black uppercase tracking-wider text-amber-900">
+              <span>Explorar</span>
+              <span class="transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true">&rarr;</span>
+            </div>
+          </a>
 
-              <div class="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label for="comunidad" class="block text-xs font-bold uppercase tracking-wider text-stone-300">Caserío o Sector</label>
-                  <select
-                    id="comunidad"
-                    class="mt-1.5 w-full rounded-xl border border-stone-700 bg-stone-800 px-3.5 py-3 text-sm text-white focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
-                  >
-                    <option value="ponto-centro">Pontó Centro</option>
-                    <option value="san-marcos">San Marcos</option>
-                    <option value="huaytuna">Huaytuna</option>
-                    <option value="utcubamba">Utcubamba</option>
-                    <option value="yauya">Yauya</option>
-                    <option value="residentes">Residente en otra ciudad</option>
-                    <option value="otro">Otro sector</option>
-                  </select>
-                </div>
-                <div>
-                  <label for="eje" class="block text-xs font-bold uppercase tracking-wider text-stone-300">Eje de Propuesta</label>
-                  <select
-                    id="eje"
-                    class="mt-1.5 w-full rounded-xl border border-stone-700 bg-stone-800 px-3.5 py-3 text-sm text-white focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
-                  >
-                    <option value="agua">Agua y Riego Tecnificado</option>
-                    <option value="caminos">Caminos y Conectividad</option>
-                    <option value="educacion">Educación y Juventud</option>
-                    <option value="salud">Salud y Calidad de Vida</option>
-                    <option value="identidad">Identidad y Cultura</option>
-                  </select>
-                </div>
+          <!-- Banner 3: Descubre las Propuestas -->
+          <a
+            href="/propuestas"
+            class="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-stone-200/80 bg-[#fdfaf8] p-7 transition-all duration-300 hover:-translate-y-2 hover:border-red-400 hover:bg-white hover:shadow-xl hover:shadow-orange-950/10 focus:outline-2 focus:outline-offset-2 focus:outline-red-400"
+          >
+            <div>
+              <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-red-100 text-[#991b1b] transition duration-300 group-hover:scale-110">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.439a8.966 8.966 0 0 1-4.5 0m4.5 0v1.5a1.5 1.5 0 0 1-1.5 1.5h-1.5a1.5 1.5 0 0 1-1.5-1.5v-1.5m3.75-9.75a6 6 0 1 0-7.5 0" />
+                </svg>
               </div>
+              <h3 class="mt-5 text-xl font-black text-stone-950 group-hover:text-[#991b1b] transition-colors">
+                Descubre las Propuestas
+              </h3>
+              <p class="mt-2 text-sm leading-6 text-stone-600">
+                Proyectos viables para el desarrollo de Áncash.
+              </p>
+            </div>
+            <div class="mt-6 flex items-center gap-2 text-xs font-black uppercase tracking-wider text-red-900">
+              <span>Explorar</span>
+              <span class="transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true">&rarr;</span>
+            </div>
+          </a>
 
-              <div>
-                <label for="detalle" class="block text-xs font-bold uppercase tracking-wider text-stone-300">Detalle de tu Propuesta</label>
-                <textarea
-                  id="detalle"
-                  rows="3"
-                  required
-                  placeholder="Describe la necesidad o idea de mejora para tu sector..."
-                  class="mt-1.5 w-full rounded-xl border border-stone-700 bg-stone-800/80 px-4 py-3 text-sm text-white placeholder-stone-500 focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
-                ></textarea>
+          <!-- Banner 4: Suma tu Voz (Destacado Terracota) -->
+          <a
+            href="/participa"
+            class="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-orange-400/40 bg-gradient-to-br from-[#240c07] via-[#45160c] to-[#782918] p-7 text-white transition-all duration-300 hover:-translate-y-2 hover:border-amber-400 hover:shadow-2xl hover:shadow-orange-950/40 focus:outline-2 focus:outline-offset-2 focus:outline-amber-400"
+          >
+            <div>
+              <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-400/20 text-amber-300 backdrop-blur-md transition duration-300 group-hover:scale-110">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
+                </svg>
               </div>
-
-              <button
-                type="submit"
-                class="w-full rounded-xl bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 py-3.5 text-sm font-black uppercase tracking-wider text-stone-950 shadow-lg shadow-orange-950/50 transition-all hover:brightness-110 focus:outline-2 focus:outline-offset-2 focus:outline-amber-400"
-              >
-                Aportar Propuesta a la Visión
-              </button>
-
-              <div id="msg-exito" class="hidden rounded-xl border border-amber-400/40 bg-amber-400/10 p-3 text-center text-xs font-bold text-amber-300">
-                ✓ ¡Muchas gracias! Tu propuesta ha sido registrada para ser integrada a la plataforma comunitaria de Pontó.
-              </div>
-            </form>
-          </div>
+              <h3 class="mt-5 text-xl font-black text-white group-hover:text-amber-300 transition-colors">
+                Suma tu Voz
+              </h3>
+              <p class="mt-2 text-sm leading-6 text-stone-200">
+                Participa y envíanos las necesidades de tu caserío.
+              </p>
+            </div>
+            <div class="mt-6 flex items-center gap-2 text-xs font-black uppercase tracking-wider text-amber-300">
+              <span>Participar</span>
+              <span class="transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true">&rarr;</span>
+            </div>
+          </a>
         </div>
       </div>
     </section>

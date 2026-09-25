@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Diagnóstico de Pontó | Pukapacha">
+  <main class="min-h-screen bg-stone-50 text-stone-900">
+    <!-- Header banner con paleta Pukapacha -->
+    <section class="relative isolate overflow-hidden bg-gradient-to-br from-[#240c07] via-[#4d190f] to-[#7c2b1a] px-5 py-24 text-center text-white sm:px-8 sm:py-32">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(249,115,22,0.22),transparent_40%),linear-gradient(135deg,rgba(36,14,8,0.92),transparent_70%)]"></div>
+      
+      <div class="relative mx-auto max-w-4xl">
+        <p class="mb-4 text-xs font-black uppercase tracking-[0.28em] text-amber-300">
+          Situación y Monitoreo Comunal
+        </p>
+        <!-- Título grande y centrado -->
+        <h1 class="text-4xl font-black tracking-tight drop-shadow-xl sm:text-6xl lg:text-7xl">
+          Diagnóstico de Pontó
+        </h1>
+        <p class="mx-auto mt-6 max-w-2xl text-base leading-8 text-stone-200 sm:text-xl">
+          Información transparente sobre la realidad de nuestro territorio, el estado de las obras y los desafíos prioritarios que enfrentamos en cada caserío del distrito.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contenido provisional -->
+    <section class="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-24">
+      <div class="rounded-3xl border border-stone-200 bg-white p-8 shadow-sm sm:p-12">
+        <h2 class="text-2xl font-black text-stone-950 sm:text-3xl">Estado Actual del Territorio</h2>
+        <p class="mt-4 text-base leading-7 text-stone-600">
+          Este espacio albergará el diagnóstico participativo levantado en asambleas comunitarias, incluyendo estadísticas de acceso a servicios básicos, transitabilidad de caminos rurales y el avance técnico de proyectos de infraestructura en Pontó.
+        </p>
+
+        <div class="mt-8 grid gap-4 sm:grid-cols-3">
+          <div class="rounded-2xl border border-stone-200 bg-[#fbf8f5] p-6 text-center">
+            <p class="text-xs font-bold uppercase tracking-wider text-stone-500">Recurso Hídrico</p>
+            <p class="mt-2 text-3xl font-black text-orange-800">8 Caseríos</p>
+            <p class="mt-1 text-xs text-stone-600">Con déficit hídrico en época de estiaje que requieren reservorios.</p>
+          </div>
+          <div class="rounded-2xl border border-stone-200 bg-[#fbf8f5] p-6 text-center">
+            <p class="text-xs font-bold uppercase tracking-wider text-stone-500">Caminos Vecinales</p>
+            <p class="mt-2 text-3xl font-black text-amber-800">42 Km</p>
+            <p class="mt-1 text-xs text-stone-600">De trochas en estado crítico para el traslado de cosechas.</p>
+          </div>
+          <div class="rounded-2xl border border-stone-200 bg-[#fbf8f5] p-6 text-center">
+            <p class="text-xs font-bold uppercase tracking-wider text-stone-500">Infraestructura Social</p>
+            <p class="mt-2 text-3xl font-black text-stone-900">En Evaluación</p>
+            <p class="mt-1 text-xs text-stone-600">Seguimiento a postas médicas y locales comunales del distrito.</p>
+          </div>
+        </div>
+
+        <div class="mt-8 border-t border-stone-100 pt-6">
+          <a href="/obras/" class="inline-flex items-center gap-2 text-sm font-black text-orange-800 transition hover:text-orange-950">
+            Revisar el registro de proyectos y fichas técnicas de obras <span aria-hidden="true">&#8594;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

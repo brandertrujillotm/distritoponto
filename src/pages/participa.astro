@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Participa por Pontó | Pukapacha">
+  <main class="min-h-screen bg-stone-50 text-stone-900">
+    <!-- Header banner con paleta Pukapacha -->
+    <section class="relative isolate overflow-hidden bg-gradient-to-br from-[#240c07] via-[#4d190f] to-[#7c2b1a] px-5 py-24 text-center text-white sm:px-8 sm:py-32">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(249,115,22,0.22),transparent_40%),linear-gradient(135deg,rgba(36,14,8,0.92),transparent_70%)]"></div>
+      
+      <div class="relative mx-auto max-w-4xl">
+        <p class="mb-4 text-xs font-black uppercase tracking-[0.28em] text-amber-300">
+          Voz Ciudadana y Compromiso
+        </p>
+        <!-- Título grande y centrado -->
+        <h1 class="text-4xl font-black tracking-tight drop-shadow-xl sm:text-6xl lg:text-7xl">
+          Participa por Pontó
+        </h1>
+        <p class="mx-auto mt-6 max-w-2xl text-base leading-8 text-stone-200 sm:text-xl">
+          Este espacio es tuyo: comunero, vecino, joven o residente pontonino. Aporta tus ideas, suma propuestas y construyamos juntos el futuro de la tierra colorada.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contenido provisional -->
+    <section class="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-24">
+      <div class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+        <div class="rounded-3xl border border-stone-200 bg-white p-8 shadow-sm sm:p-10">
+          <h2 class="text-2xl font-black text-stone-950 sm:text-3xl">Canales de Participación</h2>
+          <p class="mt-4 text-base leading-7 text-stone-600">
+            Aquí los vecinos y organizaciones comunales podrán registrar sus iniciativas, sumarse a los comités vecinales y participar en las mesas de diálogo que se coordinan para el desarrollo de Pontó.
+          </p>
+
+          <div class="mt-6 space-y-4">
+            <div class="rounded-2xl border border-orange-100 bg-[#fdfaf8] p-5">
+              <h3 class="font-black text-stone-900">Mesas de Trabajo Comunal</h3>
+              <p class="mt-1 text-sm text-stone-600">Espacios de debate organizados por comisiones de regantes, productores y directivas de caseríos.</p>
+            </div>
+            <div class="rounded-2xl border border-orange-100 bg-[#fdfaf8] p-5">
+              <h3 class="font-black text-stone-900">Red de Pontoninos en Otras Ciudades</h3>
+              <p class="mt-1 text-sm text-stone-600">Enlace con paisanos en Lima, Chimbote, Huaraz y el extranjero interesados en apoyar proyectos distritales.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulario provisional de contacto/propuestas -->
+        <div class="rounded-3xl border border-amber-400/30 bg-[#240c07] p-8 text-white shadow-xl">
+          <h3 class="text-xl font-black text-white">Envía tu Aporte o Idea</h3>
+          <p class="mt-1 text-xs text-stone-300">Déjanos tu mensaje para integrarlo a las asambleas comunales.</p>
+
+          <form class="mt-6 space-y-4" onsubmit="event.preventDefault(); document.getElementById('msg-exito-participa').classList.remove('hidden'); this.reset();">
+            <div>
+              <label for="nombre" class="block text-xs font-bold uppercase tracking-wider text-stone-300">Nombre o Asociación</label>
+              <input type="text" id="nombre" required placeholder="Tu nombre o grupo comunal" class="mt-1.5 w-full rounded-xl border border-stone-700 bg-stone-900/80 px-4 py-2.5 text-sm text-white placeholder-stone-500 focus:border-amber-400 focus:outline-none" />
+            </div>
+            <div>
+              <label for="comunidad" class="block text-xs font-bold uppercase tracking-wider text-stone-300">Caserío / Sector</label>
+              <input type="text" id="comunidad" required placeholder="Ej. Pontó Centro, Huaytuna, etc." class="mt-1.5 w-full rounded-xl border border-stone-700 bg-stone-900/80 px-4 py-2.5 text-sm text-white placeholder-stone-500 focus:border-amber-400 focus:outline-none" />
+            </div>
+            <div>
+              <label for="mensaje" class="block text-xs font-bold uppercase tracking-wider text-stone-300">Tu mensaje o propuesta</label>
+              <textarea id="mensaje" rows="3" required placeholder="¿Cómo te gustaría colaborar o qué proyecto propones?" class="mt-1.5 w-full rounded-xl border border-stone-700 bg-stone-900/80 px-4 py-2.5 text-sm text-white placeholder-stone-500 focus:border-amber-400 focus:outline-none"></textarea>
+            </div>
+            <button type="submit" class="w-full rounded-xl bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 py-3 text-sm font-black uppercase tracking-wider text-stone-950 transition hover:brightness-110">
+              Registrar Participación
+            </button>
+            <div id="msg-exito-participa" class="hidden rounded-xl border border-amber-400/40 bg-amber-400/10 p-3 text-center text-xs font-bold text-amber-300">
+              ✓ ¡Gracias por tu compromiso con Pontó! Tu iniciativa ha sido recibida.
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
