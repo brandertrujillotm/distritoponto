@@ -1,15 +1,57 @@
+---
+interface Props {
+	 title?: string;
+}
+
+const { title = 'Municipalidad Distrital de Pontó | Áncash' } = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
 	</head>
-	<body>
+	<body class="min-h-screen bg-slate-50 text-slate-900 antialiased">
+		<header class="sticky top-0 z-50 border-b border-emerald-800/70 bg-emerald-950/95 text-white shadow-xl shadow-emerald-950/10 backdrop-blur-md">
+			<div class="mx-auto flex min-h-20 max-w-7xl items-center justify-between gap-6 px-5 py-3 sm:px-8 lg:px-10">
+				<a href="/" class="group flex min-w-0 items-center gap-3" aria-label="Distrito de Pontó, inicio">
+					<span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-yellow-300 via-amber-400 to-yellow-600 text-xl font-black text-emerald-950 shadow-lg shadow-yellow-950/20 transition-transform duration-300 group-hover:scale-105">P</span>
+					<span class="truncate text-sm font-black uppercase tracking-[0.18em] text-white sm:text-base">Distrito de Pontó</span>
+				</a>
+				<nav class="hidden items-center gap-7 text-sm font-bold text-emerald-50 md:flex" aria-label="Navegación principal">
+					<a href="/" class="rounded-md px-2 py-2 transition-all duration-300 hover:bg-white/10 hover:text-yellow-300 focus:outline-2 focus:outline-offset-4 focus:outline-yellow-300">Inicio</a>
+					<a href="/#servicios" class="rounded-md px-2 py-2 transition-all duration-300 hover:bg-white/10 hover:text-yellow-300 focus:outline-2 focus:outline-offset-4 focus:outline-yellow-300">Servicios</a>
+					<a href="/obras/" class="rounded-md px-2 py-2 transition-all duration-300 hover:bg-white/10 hover:text-yellow-300 focus:outline-2 focus:outline-offset-4 focus:outline-yellow-300">Obras</a>
+					<a href="/turismo/" class="rounded-md px-2 py-2 transition-all duration-300 hover:bg-white/10 hover:text-yellow-300 focus:outline-2 focus:outline-offset-4 focus:outline-yellow-300">Turismo</a>
+				</nav>
+				<a href="/#contacto" class="inline-flex shrink-0 items-center justify-center rounded-lg border border-yellow-300/60 bg-yellow-400 px-4 py-2.5 text-xs font-black uppercase tracking-wider text-emerald-950 shadow-lg shadow-yellow-950/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-yellow-300 focus:outline-2 focus:outline-offset-4 focus:outline-yellow-300 sm:text-sm">Contacto</a>
+			</div>
+		</header>
+
 		<slot />
+
+		<footer class="border-t-4 border-yellow-400 bg-gradient-to-br from-slate-800 via-slate-900 to-black text-slate-300">
+			<div class="mx-auto flex max-w-7xl flex-col gap-8 px-5 py-12 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-10">
+				<div>
+					<div class="flex items-center gap-3">
+						<span class="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-yellow-300 to-amber-600 text-lg font-black text-emerald-950">P</span>
+						<p class="text-lg font-black uppercase tracking-widest text-white">Distrito de Pontó</p>
+					</div>
+					<p class="mt-4 max-w-md text-sm leading-6 text-slate-400">Trabajamos por un distrito con identidad, oportunidades y un futuro compartido.</p>
+				</div>
+				<div class="text-sm leading-7 lg:text-right">
+					<p class="font-bold text-yellow-300">Municipalidad Distrital de Pontó</p>
+					<p>Áncash, Perú</p>
+					<p class="text-slate-500">Portal institucional oficial</p>
+				</div>
+			</div>
+			<div class="border-t border-white/10 px-5 py-5 text-center text-xs text-slate-500 sm:px-8">© {new Date().getFullYear()} Municipalidad Distrital de Pontó. Todos los derechos reservados.</div>
+		</footer>
 	</body>
 </html>
 

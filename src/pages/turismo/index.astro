@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const destinos = await getCollection('turismo');
+---
+
+<Layout>
+  <main class="min-h-screen bg-slate-950 text-white">
+    <section class="relative isolate overflow-hidden border-b border-white/10 bg-gradient-to-br from-emerald-950 via-slate-900 to-sky-950">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_76%_30%,rgba(45,212,191,0.18),transparent_26%),linear-gradient(120deg,rgba(2,44,34,0.96),rgba(15,23,42,0.65))]"></div>
+      <div class="relative mx-auto flex min-h-[560px] max-w-7xl items-end px-5 pb-16 pt-36 sm:px-8 sm:pb-20 lg:min-h-[620px] lg:px-10">
+        <div class="max-w-4xl">
+          <p class="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.22em] text-emerald-200"><span class="h-px w-9 bg-emerald-300"></span>Destino Pontó</p>
+          <h1 class="mt-5 max-w-4xl text-5xl font-black leading-[0.98] tracking-tight text-white sm:text-7xl lg:text-8xl">Riqueza cultural e histórica de Pontó</h1>
+          <p class="mt-7 max-w-2xl text-base leading-7 text-slate-200 sm:text-lg">Recorre paisajes, tradiciones y lugares que guardan la memoria viva de nuestro distrito en el corazón de Áncash.</p>
+          <a href="#destinos" class="mt-9 inline-flex items-center gap-2 rounded-md bg-white px-5 py-3.5 text-sm font-bold text-emerald-950 shadow-lg shadow-black/20 transition hover:bg-emerald-50 focus:outline-2 focus:outline-offset-4 focus:outline-emerald-300">Explorar destinos <span aria-hidden="true">&#8595;</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="destinos" class="mx-auto max-w-7xl px-5 py-14 sm:px-8 sm:py-20 lg:px-10" aria-labelledby="destinos-titulo">
+      <div class="mb-9 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-[0.2em] text-emerald-300">Conoce nuestro distrito</p>
+          <h2 id="destinos-titulo" class="mt-2 text-3xl font-black tracking-tight text-white sm:text-4xl">Lugares para descubrir</h2>
+        </div>
+        <p class="text-sm font-semibold text-slate-400">{destinos.length} {destinos.length === 1 ? 'destino registrado' : 'destinos registrados'}</p>
+      </div>
+
+      {destinos.length > 0 ? (
+        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {destinos.map((destino, index) => (
+            <article class:list={["group relative min-h-[420px] overflow-hidden rounded-lg border border-white/10 bg-slate-800 shadow-xl shadow-black/20", index === 0 && "md:col-span-2 lg:row-span-2 lg:min-h-[620px]"]}>
+              <img src={destino.data.imagen} alt={`Paisaje de ${destino.data.titulo}`} class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" loading={index === 0 ? 'eager' : 'lazy'} />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/35 to-transparent"></div>
+              <div class="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+                <p class="flex items-start gap-2 text-xs font-bold uppercase tracking-[0.16em] text-emerald-200"><span aria-hidden="true">&#9679;</span> {destino.data.ubicacion}</p>
+                <h3 class="mt-3 text-2xl font-black leading-tight text-white sm:text-3xl">{destino.data.titulo}</h3>
+                <p class="mt-3 max-w-xl text-sm leading-6 text-slate-200">{destino.data.descripcion}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div class="rounded-lg border border-dashed border-white/20 bg-white/5 px-6 py-16 text-center">
+          <h2 class="text-xl font-bold text-white">Próximamente conocerás nuestros destinos</h2>
+          <p class="mt-2 text-sm text-slate-400">Estamos preparando nuevas historias y lugares para descubrir.</p>
+        </div>
+      )}
+    </section>
+
+  </main>
+</Layout>

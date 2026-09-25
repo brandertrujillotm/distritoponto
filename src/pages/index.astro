@@ -1,11 +1,74 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const obras = (await getCollection('obras')).sort(
+  (a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf(),
+);
+
+const obrasDestacadas = obras.slice(0, 3);
+
+const progresoPorEstado = {
+  'en ejecución': 65,
+  terminada: 100,
+  planificada: 20,
+} as const;
+
+const estadoStyles = {
+  'en ejecución': 'bg-amber-100 text-amber-950 ring-amber-200',
+  terminada: 'bg-emerald-100 text-emerald-950 ring-emerald-200',
+  planificada: 'bg-sky-100 text-sky-950 ring-sky-200',
+} as const;
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('es-PE', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  }).format(date);
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Distrito de Pontó - Inicio">
+  <main class="min-h-screen overflow-hidden bg-white text-slate-900">
+    <section class="relative isolate overflow-hidden bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-700 text-white">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_80%_15%,rgba(52,211,153,0.35),transparent_28%),linear-gradient(135deg,rgba(2,44,34,0.85),transparent_60%)]"></div>
+      <div class="absolute -right-32 top-24 h-96 w-96 rounded-full border border-yellow-300/10 bg-yellow-300/5 blur-3xl"></div>
+      <div class="relative mx-auto grid min-h-[680px] max-w-7xl items-center gap-12 px-5 pb-40 pt-28 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:px-10">
+        <div class="max-w-3xl">
+          <p class="mb-6 flex items-center gap-3 text-xs font-black uppercase tracking-[0.28em] text-emerald-200"><span class="h-px w-10 bg-yellow-300"></span>Municipalidad Distrital de Pontó</p>
+          <h1 class="text-5xl font-black leading-[0.98] tracking-tight drop-shadow-2xl sm:text-7xl lg:text-8xl">Un distrito con <span class="bg-gradient-to-r from-yellow-200 via-yellow-400 to-amber-500 bg-clip-text text-transparent">historia</span>, visión y futuro.</h1>
+          <p class="mt-7 max-w-2xl text-base leading-8 text-emerald-50 sm:text-xl">Construimos desarrollo con transparencia, identidad y oportunidades para todas las comunidades de Pontó.</p>
+          <div class="mt-10 flex flex-col gap-3 sm:flex-row">
+            <a href="#obras" class="inline-flex items-center justify-center gap-2 rounded-xl bg-yellow-400 px-6 py-4 text-sm font-black text-emerald-950 shadow-xl shadow-emerald-950/25 transition-all hover:-translate-y-1 hover:bg-yellow-300 focus:outline-2 focus:outline-offset-4 focus:outline-yellow-300">Mesa de Partes Virtual <span aria-hidden="true">&#8599;</span></a>
+            <a href="#obras" class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-4 text-sm font-black text-white shadow-lg backdrop-blur-md transition-all hover:-translate-y-1 hover:border-yellow-300 hover:text-yellow-200 focus:outline-2 focus:outline-offset-4 focus:outline-yellow-300">Transparencia <span aria-hidden="true">&#8595;</span></a>
+          </div>
+        </div>
+        <div class="relative mx-auto w-full max-w-md lg:justify-self-end">
+          <div class="absolute -right-5 -top-5 h-32 w-32 rounded-tr-[2rem] border-r-2 border-t-2 border-yellow-300/60"></div>
+          <div class="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/20 bg-gradient-to-b from-sky-500 via-emerald-700 to-slate-950 shadow-2xl shadow-black/30" role="img" aria-label="Placeholder panorámico del paisaje de Pontó">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_65%_20%,rgba(255,255,255,0.4),transparent_18%),linear-gradient(155deg,transparent_35%,rgba(2,44,34,0.1)_36%,rgba(2,6,23,0.8)_100%)]"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-7 sm:p-9"><p class="text-xs font-black uppercase tracking-[0.2em] text-yellow-200">Territorio vivo</p><p class="mt-3 text-2xl font-black leading-tight text-white drop-shadow-lg">Comunidades que construyen su propio camino.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicios" class="relative z-20 -mt-24 px-5 pb-20 sm:px-8 lg:px-10">
+      <div class="mx-auto grid max-w-7xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <a href="#tramites" class="group rounded-2xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-900/10 transition-all hover:-translate-y-2 hover:shadow-2xl focus:outline-2 focus:outline-offset-4 focus:outline-emerald-700"><span class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 text-emerald-800 transition-transform group-hover:scale-110" aria-hidden="true"><svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 3.5h7l3 3V20.5H7a2 2 0 0 1-2-2v-13a2 2 0 0 1 2-2Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M14 3.5v4h4M8.5 12h7M8.5 15.5h5"/></svg></span><h2 class="mt-5 text-lg font-black text-slate-950">Trámites Rápidos</h2><p class="mt-2 text-sm leading-6 text-slate-500">Gestiona solicitudes y consultas municipales.</p><span class="mt-5 inline-flex text-sm font-black text-emerald-800">Ingresar <span class="ml-2 transition-transform group-hover:translate-x-1">&#8594;</span></span></a>
+        <a href="#seguridad" class="group rounded-2xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-900/10 transition-all hover:-translate-y-2 hover:shadow-2xl focus:outline-2 focus:outline-offset-4 focus:outline-emerald-700"><span class="flex h-12 w-12 items-center justify-center rounded-xl bg-sky-100 text-sky-800 transition-transform group-hover:scale-110" aria-hidden="true"><svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3.5 19 6v5.5c0 4.4-2.8 7.6-7 9-4.2-1.4-7-4.6-7-9V6l7-2.5Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4"/></svg></span><h2 class="mt-5 text-lg font-black text-slate-950">Seguridad</h2><p class="mt-2 text-sm leading-6 text-slate-500">Un distrito protegido se construye entre todos.</p><span class="mt-5 inline-flex text-sm font-black text-emerald-800">Conocer más <span class="ml-2 transition-transform group-hover:translate-x-1">&#8594;</span></span></a>
+        <a href="#defensa-civil" class="group rounded-2xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-900/10 transition-all hover:-translate-y-2 hover:shadow-2xl focus:outline-2 focus:outline-offset-4 focus:outline-emerald-700"><span class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-100 text-amber-800 transition-transform group-hover:scale-110" aria-hidden="true"><svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3.5 20 7v5c0 4.3-3.2 7.2-8 8.5C7.2 19.2 4 16.3 4 12V7l8-3.5Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4M12 15.5h.01"/></svg></span><h2 class="mt-5 text-lg font-black text-slate-950">Defensa Civil</h2><p class="mt-2 text-sm leading-6 text-slate-500">Prevención y respuesta para nuestras familias.</p><span class="mt-5 inline-flex text-sm font-black text-emerald-800">Ver recomendaciones <span class="ml-2 transition-transform group-hover:translate-x-1">&#8594;</span></span></a>
+        <a href="#transparencia" class="group rounded-2xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-900/10 transition-all hover:-translate-y-2 hover:shadow-2xl focus:outline-2 focus:outline-offset-4 focus:outline-emerald-700"><span class="flex h-12 w-12 items-center justify-center rounded-xl bg-rose-100 text-rose-800 transition-transform group-hover:scale-110" aria-hidden="true"><svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h8M12 8v8"/></svg></span><h2 class="mt-5 text-lg font-black text-slate-950">Transparencia</h2><p class="mt-2 text-sm leading-6 text-slate-500">Consulta obras, avances y documentos públicos.</p><span class="mt-5 inline-flex text-sm font-black text-emerald-800">Consultar <span class="ml-2 transition-transform group-hover:translate-x-1">&#8594;</span></span></a>
+      </div>
+    </section>
+
+    <section id="obras" class="bg-gray-50 px-5 py-16 sm:px-8 sm:py-20 lg:px-10">
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><p class="text-xs font-black uppercase tracking-[0.22em] text-emerald-700">Gestión en acción</p><h2 class="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">Fichas de obras</h2></div><a href="/obras/" class="inline-flex items-center gap-2 text-sm font-black text-emerald-800 transition-colors hover:text-emerald-950">Ver todas las obras <span aria-hidden="true">&#8594;</span></a></div>
+        <div class="grid gap-6 md:grid-cols-3">
+          {obrasDestacadas.map((obra) => { const avance = progresoPorEstado[obra.data.estado]; return <article class="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg transition-all hover:-translate-y-2 hover:shadow-2xl"><div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-emerald-900 to-sky-900"><img src={obra.data.imagen} alt={`Imagen de ${obra.data.titulo}`} class="h-full w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy"/><div class="absolute inset-0 bg-gradient-to-t from-slate-950/55 via-transparent to-transparent"></div><span class={`absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-black capitalize shadow-lg ring-1 ${estadoStyles[obra.data.estado]}`}>{obra.data.estado}</span></div><div class="p-6"><time datetime={obra.data.fecha.toISOString()} class="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">{formatDate(obra.data.fecha)}</time><h3 class="mt-3 text-xl font-black leading-tight text-slate-950">{obra.data.titulo}</h3><p class="mt-3 line-clamp-2 text-sm leading-6 text-slate-500">{obra.data.descripcion}</p><div class="mt-6"><div class="mb-2 flex items-center justify-between text-xs font-black text-slate-500"><span>Avance físico</span><span class="text-emerald-800">{avance}%</span></div><div class="h-2 overflow-hidden rounded-full bg-slate-200"><div class="h-full rounded-full bg-gradient-to-r from-emerald-600 to-emerald-400" style={`width: ${avance}%`}></div></div></div><a href="/obras/" class="mt-6 inline-flex items-center gap-2 rounded-lg border border-emerald-700 px-4 py-2.5 text-sm font-black text-emerald-800 transition-all hover:bg-emerald-800 hover:text-white focus:outline-2 focus:outline-offset-4 focus:outline-emerald-700">Ver Ficha Técnica <span aria-hidden="true">&#8599;</span></a></div></article>; })}
+        </div>
+      </div>
+    </section>
+  </main>
 </Layout>
