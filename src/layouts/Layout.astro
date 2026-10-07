@@ -12,7 +12,7 @@ export interface Props {
 const {
 	title = 'Distrito de Pontó | Pukapacha · Tierra Colorada',
 	description = 'Plataforma comunitaria y de visión de desarrollo para el distrito de Pontó, Huari, Áncash. Construyendo futuro desde nuestras raíces de tierra colorada.',
-	image = '/favicon.svg',
+	image = 'https://distritoponto.me/images/ponto-portada-2026.jpg',
 	canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.href,
 } = Astro.props;
 ---
@@ -32,21 +32,22 @@ const {
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonicalURL} />
 
-		<!-- Open Graph / Facebook -->
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content={Astro.url.href} />
+		<!-- Open Graph / Facebook y WhatsApp -->
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:image" content={new URL(image, Astro.url).href} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://distritoponto.me/" />
+		<meta property="og:image" content="https://distritoponto.me/images/ponto-portada-2026.jpg" />
+		<meta property="og:image:alt" content="Distrito de Pontó - Pukapacha" />
 		<meta property="og:locale" content="es_PE" />
 		<meta property="og:site_name" content="Distrito de Pontó - Pukapacha" />
 
 		<!-- Twitter Card -->
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:url" content={Astro.url.href} />
+		<meta name="twitter:url" content="https://distritoponto.me/" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content={new URL(image, Astro.url).href} />
+		<meta name="twitter:image" content="https://distritoponto.me/images/ponto-portada-2026.jpg" />
 
 		<!-- View Transitions -->
 		<ViewTransitions />
